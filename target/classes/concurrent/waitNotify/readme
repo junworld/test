@@ -1,0 +1,39 @@
+* 了解多线程中的wait和notify原理，公众号文章下面链接
+* https://mp.weixin.qq.com/s?__biz=MzIxNTQ3NDMzMw==&mid=2247484153&idx=1&sn=eccbe54a1df23d81ad525f0dcce65f64&scene=19#wechat_redirect
+* 也可到印象笔记中查看搜索关键字wait，notify
+
+
+1.等待线程的通用模式：
+    synchronized (对象) {
+        处理逻辑（可选）
+        while(条件不满足) {
+            对象.wait();
+        }
+        处理逻辑（可选）
+    }
+
+    可以分为下边几个步骤：
+        .获取对象锁。
+        .如果某个条件不满足的话，调用锁对象的wait方法，被通知后仍要检查条件是否满足。
+        .条件满足则继续执行代码。
+
+
+2.通知线程的通用模式：
+    synchronized (对象) {
+        完成条件
+        对象.notifyAll();
+    }
+
+    可以分为下边几个步骤：
+        .获得对象的锁。
+        .完成条件。
+        .通知在等待队列中的等待线程。
+
+3.wait和sleep的区别
+    .wait是Object的成员方法，而sleep是Thread的静态方法。
+    .调用wait方法需要先获得锁，而调用sleep方法是不需要的。
+    .调用wait方法的线程需要用notify来唤醒，而sleep必须设置超时值。
+    .线程在调用wait方法之后会先释放锁，而sleep不会释放锁。
+
+
+
