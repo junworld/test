@@ -1,0 +1,10 @@
+*.pr
+*.ids
+*.iws
+*.iml
+.idea/
+target/
+
+rebel.xml
+.rebel*
+.DS_Store
